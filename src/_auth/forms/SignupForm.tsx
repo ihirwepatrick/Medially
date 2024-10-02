@@ -14,6 +14,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { SignupValidation } from "@/lib/validation";
 import { Loader } from "lucide-react";
+import { createUserAccount } from "@/lib/appwrite/api";
 // import { link } from "fs";
 
 const SignupForm = () => {
@@ -30,10 +31,9 @@ const SignupForm = () => {
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof SignupValidation>) {
-    // const newUser = await createUserAccount(values);
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
+  async function onSubmit(values: z.infer<typeof SignupValidation>) {
+    const newUser = await createUserAccount(values);
+    console.log(newUser);
     console.log(values);
   }
 
